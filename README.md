@@ -44,30 +44,10 @@ flowchart TB
 
 ## Project Structure
 
-```
-fireside/
-├── backend/                 # Lambda + API code
-│   ├── src/
-│   │   ├── handlers/        # API route handlers
-│   │   ├── lib/             # DynamoDB client, auth, etc.
-│   │   └── models/          # Types, validation
-│   └── package.json
-├── frontend/                # React Native (Expo)
-│   ├── app/
-│   ├── components/
-│   └── package.json
-├── infrastructure/          # Terraform
-│   ├── main.tf
-│   ├── api.tf
-│   ├── auth.tf
-│   ├── database.tf
-│   └── notifications.tf
-└── .github/
-    └── workflows/
-        ├── deploy-backend.yml
-        ├── deploy-infra.yml
-        └── build-frontend.yml
-```
+- **backend/** — Lambda + API code (handlers, lib, models)
+- **frontend/** — React Native (Expo)
+- **infrastructure/** — Terraform
+- **.github/workflows/** — CI/CD pipelines
 
 ## Data Model (DynamoDB)
 
