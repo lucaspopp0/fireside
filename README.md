@@ -1,11 +1,6 @@
----
-name: Fireside Call Tracker App
-overview: "Build a full-stack app from scratch: React Native frontend, AWS serverless backend (API Gateway, Lambda, DynamoDB, Cognito), Terraform infrastructure, and GitHub Actions CI/CD. Supports groups, recurring and one-time calls, and push notification reminders."
-todos: []
-isProject: false
----
+# Fireside
 
-# Fireside - Scheduled Calls Tracker
+An app to help friends keep track of regularly scheduled calls. Create groups, add members, and schedule one-time or recurring calls with push notification reminders.
 
 ## Architecture Overview
 
@@ -47,8 +42,6 @@ flowchart TB
     SNS -->|Push| RN
 ```
 
-
-
 ## Project Structure
 
 ```
@@ -78,14 +71,12 @@ fireside/
 
 ## Data Model (DynamoDB)
 
-
 | Table         | Partition Key        | Sort Key | Purpose                                 |
 | ------------- | -------------------- | -------- | --------------------------------------- |
 | users         | userId (Cognito sub) | -        | User profile, device tokens for push    |
 | groups        | groupId              | -        | Group name, createdBy                   |
 | group_members | groupId              | userId   | Membership, invitedAt                   |
 | calls         | callId               | -        | title, scheduledAt, recurrence, groupId |
-
 
 **Recurrence schema**: Store as JSON (e.g., `{ "frequency": "weekly", "weekdays": [2], "time": "19:00" }`). Use EventBridge Scheduler to create recurring reminder jobs.
 
@@ -129,14 +120,12 @@ fireside/
 
 ## Technology Choices Summary
 
-
 | Layer  | Choice                | Rationale                                     |
 | ------ | --------------------- | --------------------------------------------- |
 | Lambda | Node 20 + TypeScript  | Familiar, fast cold starts, good DynamoDB SDK |
 | API    | API Gateway HTTP API  | Cheaper, simpler than REST API                |
 | Push   | Expo Push (MVP)       | Minimal setup; can migrate to SNS later       |
 | RN     | Expo managed workflow | OTA updates, push built-in, simpler dev       |
-
 
 ## Phased Rollout
 
@@ -162,3 +151,7 @@ fireside/
 2. **Terraform state**: Use remote S3 backend from the start; create bucket manually or via bootstrap script.
 3. **Environments**: Start with `dev` only; add `staging`/`prod` when needed.
 4. **Adding friends to groups**: MVP = invite by email; backend creates Cognito user if needed and adds to `group_members`. Simpler: require invitee to have account first; search by email to add.
+
+## Getting Started
+
+*Setup instructions to be added once the project structure is in place.*
