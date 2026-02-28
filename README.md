@@ -46,7 +46,7 @@ flowchart TB
 
 - **backend/** — Lambda + API code (handlers, lib, models)
 - **frontend/** — React Native (Expo)
-- **infrastructure/** — Terraform
+- **infra/** — Terraform
 - **.github/workflows/** — CI/CD pipelines
 
 ## Data Model (DynamoDB)
@@ -85,7 +85,7 @@ flowchart TB
 ### 4. GitHub Actions
 
 - **Workflows**:
-  - `deploy-infra`: On push to `main` in `infrastructure/`, run `terraform plan` (PR) / `apply` (merge)
+  - `deploy-infra`: On push to `main` in `infra/`, run `terraform plan` (PR) / `apply` (merge)
   - `deploy-backend`: On push to `main` in `backend/`, build Lambda, deploy via Terraform or SAM/Serverless—recommend Terraform-managed Lambda to keep single source of truth
   - `build-frontend`: Build React Native (Expo) on PR; optional EAS Build for release binaries
 - **Secrets**: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` (or OIDC with OIDC); Terraform variables for stage (dev/staging/prod)
