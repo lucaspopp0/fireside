@@ -129,6 +129,11 @@ fireside/
 
 ## Phased Rollout
 
+**Phase 0 (POC)**
+
+- Create a basic React Native app
+- Install and run on both iOS and Android devices
+
 **Phase 1 (MVP)**
 
 - Cognito sign-up/sign-in
